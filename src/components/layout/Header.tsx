@@ -5,19 +5,22 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useCart } from '@/contexts/CartContext';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { LanguageSwitch } from '@/components/LanguageSwitch';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/products', label: 'Explore Products' },
-  { href: '/artisans', label: 'Artisans' },
-  { href: '/become-seller', label: 'Become a Seller' },
+  { href: '/', labelKey: 'nav.home' },
+  { href: '/products', labelKey: 'nav.products' },
+  { href: '/artisans', labelKey: 'nav.artisans' },
+  { href: '/become-seller', labelKey: 'nav.becomeSeller' },
 ];
 
 export function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { totalItems } = useCart();
+  const { t } = useLanguage();
   const location = useLocation();
 
   return (
@@ -43,19 +46,22 @@ export function Header() {
                   : 'text-muted-foreground'
               )}
             >
-              {link.label}
+              {t(link.labelKey)}
             </Link>
           ))}
         </nav>
 
         {/* Right Actions */}
         <div className="flex items-center gap-2">
+          {/* Language Switch */}
+          <LanguageSwitch />
+
           {/* Search - Desktop */}
           <div className="relative hidden md:block">
             {isSearchOpen ? (
               <div className="flex items-center gap-2">
                 <Input
-                  placeholder="Search products..."
+                  placeholder={t('search.placeholder')}
                   className="w-64 animate-scale-in"
                   autoFocus
                   onBlur={() => setIsSearchOpen(false)}
@@ -132,7 +138,7 @@ export function Header() {
                         : 'text-muted-foreground'
                     )}
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </Link>
                 ))}
               </nav>
