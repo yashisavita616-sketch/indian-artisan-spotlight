@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabaseClient';
+import { supabase } from '@/integrations/supabase/client';
 import { ArtisanCard } from '@/components/ArtisanCard';
 import { ArtisanSkeletonGrid } from '@/components/ArtisanSkeleton';
 import { Input } from '@/components/ui/input';
