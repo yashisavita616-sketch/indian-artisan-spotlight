@@ -11,10 +11,11 @@ export function LanguageSwitch() {
 
   return (
     <Button
-      variant="ghost"
+      variant="outline"
       size="sm"
       onClick={toggleLanguage}
       className="gap-1.5 text-sm font-medium"
+      aria-label={`Switch to ${language === 'en' ? 'Hindi' : 'English'}`}
     >
       <Globe className="h-4 w-4" />
       <span className="hidden sm:inline">{language === 'en' ? 'हिंदी' : 'English'}</span>
